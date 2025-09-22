@@ -1,1 +1,9 @@
-/* You can add extra custom CSS here if needed. Tailwind handles most styling. */
+
+/* Optional small tweaks beyond Tailwind */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.glass { backdrop-filter: blur(12px); background: rgba(255,255,255,0.06); }

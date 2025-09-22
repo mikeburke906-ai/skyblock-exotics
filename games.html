@@ -5,36 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Games • Skyblock Exotics</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100">
+<body class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100">
+  
 <header class="sticky top-0 z-40 border-b border-white/10 bg-slate-900/70 backdrop-blur">
   <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-2">
-      <div class="h-8 w-8 rounded-xl bg-white/10 grid place-items-center">🎲</div>
+      <div class="h-8 w-8 rounded-xl bg-white/10 grid place-items-center">🛡️</div>
       <a href="./" class="font-semibold tracking-wide">Skyblock Exotics</a>
     </div>
     <nav class="hidden md:flex items-center gap-6 text-slate-300">
-      <a href="./#market" class="hover:text-white">Market</a>
-      <a href="./games.html" class="hover:text-white">Games</a>
+      <a href="./#market" class="hover:text-white ">Market</a>
+      <a href="./games.html" class="hover:text-white text-white">Games</a>
+      <a href="./reputation.html" class="hover:text-white ">Reputation</a>
       <a href="./#faq" class="hover:text-white">FAQ</a>
     </nav>
+    <div id="authArea" class="flex items-center gap-2">
+      <button id="signInBtn" class="hidden px-3 py-1.5 rounded-lg bg-white text-slate-900 hover:opacity-90">Sign in</button>
+      <div id="userBadge" class="hidden items-center gap-2">
+        <img id="userAvatar" class="h-8 w-8 rounded-full ring-2 ring-white/20" alt="avatar">
+        <span id="userName" class="text-sm text-slate-200"></span>
+        <button id="signOutBtn" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20">Sign out</button>
+      </div>
+    </div>
   </div>
 </header>
 
-<main class="mx-auto max-w-7xl px-4 py-8">
-  <h1 class="text-3xl font-bold mb-6">Coinflip Game</h1>
-  <div id="gameArea" class="rounded-2xl border border-white/10 bg-white/5 p-6 space-y-4">
-    <button id="createFlip" class="px-4 py-2 rounded-xl bg-indigo-500 hover:bg-indigo-600">Create Coinflip</button>
-    <div id="gamesList" class="grid gap-3"></div>
-  </div>
-</main>
+  <main class="mx-auto max-w-7xl px-4 py-10 space-y-10">
+    <section class="grid md:grid-cols-2 gap-8 items-start">
+      <div class="space-y-4">
+        <h1 class="text-3xl md:text-4xl font-extrabold">Provably-Fair Coinflip</h1>
+        <p class="text-slate-300">Create or join a coinflip. Each player commits a hidden random seed (hash stored on-chain—well, in Firestore 😉), then both reveal. Outcome is computed from both seeds. Both players must confirm the result before it’s recorded.</p>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5 space-y-3">
+          <h2 class="text-lg font-semibold">Create a Flip</h2>
+          <form id="createFlip" class="grid grid-cols-2 gap-3">
+            <div class="col-span-2 grid gap-1">
+              <label class="text-sm">Stake Type</label>
+              <select name="stakeType" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
+                <option value="coins">Coins</option>
+                <option value="usd">USD</option>
+              </select>
+            </div>
+            <div class="col-span-2 grid gap-1">
+              <label class="text-sm">Stake Amount</label>
+              <input name="stakeAmount" type="number" min="1" step="1" placeholder="e.g., 10000000" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10" required>
+            </div>
+            <div class="col-span-2 flex items-center justify-end gap-2">
+              <button type="submit" class="px-4 py-2 rounded-xl bg-indigo-500 hover:bg-indigo-600">Create</button>
+            </div>
+          </form>
+        </div>
 
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <h2 class="text-lg font-semibold">My Stats</h2>
+          <div class="mt-2 text-slate-300 text-sm" id="myStats">Sign in to see your wins and losses.</div>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold">Open & Active Games</h2>
+          <button id="refresh" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-sm">Refresh</button>
+        </div>
+        <div id="gamesList" class="grid gap-3"></div>
+      </div>
+    </section>
+
+    <section class="rounded-2xl border border-white/10 bg-white/5 p-5">
+      <h2 class="text-lg font-semibold">How it works</h2>
+      <ol class="list-decimal ml-5 mt-2 text-slate-300 text-sm space-y-1">
+        <li>Creator commits a hidden random seed (we store only its SHA-256 hash).</li>
+        <li>Joiner commits theirs.</li>
+        <li>Both click <em>Reveal</em> to publish seeds.</li>
+        <li>Outcome = SHA-256(creatorSeed + joinerSeed) % 2 → even = creator wins, odd = joiner wins.</li>
+        <li>Both confirm the result. Once both agree, either may finalize. Stats update.</li>
+      </ol>
+      <p class="text-xs text-slate-400 mt-2">This page does not move coins or money. Use in-game trades or escrow; this only records results.</p>
+    </section>
+  </main>
+  
 <footer class="border-t border-white/10 py-8 text-center text-slate-400 text-sm">
-  <p>© <span id="year"></span> Skyblock Exotics Market</p>
+  <p>© <span id="year"></span> Skyblock Exotics Market — community-run marketplace.</p>
 </footer>
-
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script type="module" src="firebase.js"></script>
-<script type="module" src="games.js"></script>
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="games.js"></script>
 </body>
 </html>
