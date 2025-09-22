@@ -4,178 +4,51 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Skyblock Exotics Market</title>
-  <link rel="icon" href="favicon.ico">
-  <!-- Tailwind via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <meta name="description" content="List, browse, and trade exotic Skyblock armor sets. Coins or USD.">
-  <style>
-    /* Extra polish */
-    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.6); }
-  </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100">
-  <header class="sticky top-0 z-40 border-b border-white/10 bg-slate-900/70 backdrop-blur">
-    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <div class="h-8 w-8 rounded-xl bg-white/10 grid place-items-center">🛡️</div>
-        <a href="./" class="font-semibold tracking-wide">Skyblock Exotics</a>
+<header class="sticky top-0 z-40 border-b border-white/10 bg-slate-900/70 backdrop-blur">
+  <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="h-8 w-8 rounded-xl bg-white/10 grid place-items-center">🛡️</div>
+      <a href="./" class="font-semibold tracking-wide">Skyblock Exotics</a>
+    </div>
+    <nav class="hidden md:flex items-center gap-6 text-slate-300">
+      <a href="#market" class="hover:text-white">Market</a>
+      <a href="games.html" class="hover:text-white">Games</a>
+      <a href="#faq" class="hover:text-white">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main class="mx-auto max-w-7xl px-4 py-8">
+  <section id="market">
+    <h1 class="text-3xl font-bold">Marketplace</h1>
+    <p class="text-slate-300">Buy and sell exotic Skyblock armor.</p>
+  </section>
+
+  <section id="faq" class="mt-16">
+    <h2 class="text-xl font-semibold mb-3">FAQ</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <h3 class="font-semibold">Who made this?</h3>
+        <p class="text-slate-300 text-sm mt-1">I’m a former Skyblock player with ~6b coins. Currently I’m in school majoring in Finance &amp; CIS. This project is my way of unifying trade into one safer, cleaner hub for exotics.</p>
       </div>
-      <nav class="hidden md:flex items-center gap-6 text-slate-300">
-        <a href="#market" class="hover:text-white">Market</a>
-        <a href="#create" class="hover:text-white">Create Listing</a>
-        <a href="#faq" class="hover:text-white">FAQ</a>
-      </nav>
-      <div id="authArea" class="flex items-center gap-2">
-        <button id="signInBtn" class="hidden px-3 py-1.5 rounded-lg bg-white text-slate-900 hover:opacity-90">Sign in</button>
-        <div id="userBadge" class="hidden items-center gap-2">
-          <img id="userAvatar" class="h-8 w-8 rounded-full ring-2 ring-white/20" alt="avatar">
-          <span id="userName" class="text-sm text-slate-200"></span>
-          <button id="signOutBtn" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20">Sign out</button>
-        </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <h3 class="font-semibold">How does the market work?</h3>
+        <p class="text-slate-300 text-sm mt-1">Users can list items for coins or USD. Buyers contact sellers directly via Discord or payment link. We don’t handle funds here.</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+        <h3 class="font-semibold">What about the Games?</h3>
+        <p class="text-slate-300 text-sm mt-1">The Games page currently supports provably fair coinflips with Firebase. Wins and losses are tracked in user profiles. Future games like raffles or jackpots can be added later.</p>
       </div>
     </div>
-  </header>
+  </section>
+</main>
 
-  <main class="mx-auto max-w-7xl px-4 py-8">
-    <!-- Hero -->
-    <section class="grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Buy & Sell <span class="text-indigo-400">Exotic</span> Skyblock Armor</h1>
-        <p class="mt-4 text-slate-300">Post your exotics, browse verified listings, trade with coins or USD. Clean, fast, and community‑run.</p>
-        <div class="mt-6 flex gap-3">
-          <a href="#create" class="px-4 py-2 rounded-xl bg-indigo-500 hover:bg-indigo-600">Create a Listing</a>
-          <a href="#market" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20">Browse Market</a>
-        </div>
-        <p class="mt-3 text-xs text-slate-400">Note: Payments happen off‑site between users. Add your Discord or a payment link.</p>
-      </div>
-      <div class="glass rounded-3xl border border-white/10 p-6">
-        <form id="filters" class="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <input id="q" type="search" placeholder="Search..." class="col-span-2 md:col-span-2 px-3 py-2 rounded-xl bg-white/10 border border-white/10 placeholder-slate-400 focus:outline-none focus:ring focus:ring-indigo-500/40">
-          <select id="rarityFilter" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
-            <option value="">Any Rarity</option>
-            <option value="Common">Common</option>
-            <option value="Uncommon">Uncommon</option>
-            <option value="Rare">Rare</option>
-            <option value="Epic">Epic</option>
-            <option value="Legendary">Legendary</option>
-            <option value="Mythic">Mythic</option>
-          </select>
-          <select id="priceTypeFilter" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
-            <option value="">Coins or USD</option>
-            <option value="coins">Coins</option>
-            <option value="usd">USD</option>
-          </select>
-          <select id="sortBy" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
-            <option value="latest">Latest</option>
-            <option value="low">Price: Low → High</option>
-            <option value="high">Price: High → Low</option>
-          </select>
-        </form>
-      </div>
-    </section>
-
-    <!-- Market -->
-    <section id="market" class="mt-10">
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-semibold">Market Listings</h2>
-        <span id="count" class="text-sm text-slate-400"></span>
-      </div>
-      <div id="grid" class="mt-4 grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5"></div>
-      <div id="emptyState" class="hidden mt-8 text-center text-slate-400">No listings found. Try clearing filters.</div>
-    </section>
-
-    <!-- Create -->
-    <section id="create" class="mt-16">
-      <h2 class="text-xl font-semibold mb-3">Create a Listing</h2>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <p class="text-sm text-slate-300 mb-4">Sign in to post. Only you can edit or delete your own listings.</p>
-
-        <form id="createForm" class="grid md:grid-cols-2 gap-4">
-          <div class="grid gap-2">
-            <label class="text-sm">Title</label>
-            <input name="title" required maxlength="80" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10" placeholder="Black Necron Chestplate (Jaya's)">
-          </div>
-
-          <div class="grid gap-2">
-            <label class="text-sm">Armor Type</label>
-            <input name="type" required maxlength="40" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10" placeholder="Necron, Superior, Storm, etc.">
-          </div>
-
-          <div class="grid gap-2">
-            <label class="text-sm">Rarity</label>
-            <select name="rarity" required class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
-              <option>Common</option><option>Uncommon</option><option>Rare</option>
-              <option>Epic</option><option>Legendary</option><option>Mythic</option>
-            </select>
-          </div>
-
-          <div class="grid gap-2">
-            <label class="text-sm">Price Type</label>
-            <select name="priceType" id="priceType" required class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
-              <option value="coins">Coins</option>
-              <option value="usd">USD</option>
-            </select>
-          </div>
-
-          <div class="grid gap-2">
-            <label class="text-sm"><span id="priceLabel">Price (Coins)</span></label>
-            <input name="price" type="number" min="0" step="1" required class="px-3 py-2 rounded-xl bg-white/10 border border-white/10" placeholder="e.g., 120000000">
-          </div>
-
-          <div class="grid gap-2">
-            <label class="text-sm">Image URL (optional)</label>
-            <input name="imageUrl" type="url" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10" placeholder="https://...">
-          </div>
-
-          <div class="grid gap-2 md:col-span-2">
-            <label class="text-sm">Description</label>
-            <textarea name="description" rows="4" maxlength="800" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10" placeholder="Dyes, enchants, proofs, notes…"></textarea>
-          </div>
-
-          <div class="grid gap-2">
-            <label class="text-sm">Contact (Discord or email)</label>
-            <input name="contact" required maxlength="120" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10" placeholder="discord#1234 or you@email.com">
-          </div>
-
-          <div class="grid gap-2">
-            <label class="text-sm">Optional Payment Link</label>
-            <input name="paymentLink" type="url" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10" placeholder="Stripe/PayPal link (use at your own risk)">
-          </div>
-
-          <div class="md:col-span-2 flex items-center justify-between">
-            <div class="text-xs text-slate-400">By posting, you agree listings are user‑generated. Trade safely.</div>
-            <div class="flex gap-2">
-              <button type="submit" class="px-4 py-2 rounded-xl bg-indigo-500 hover:bg-indigo-600">Post Listing</button>
-              <button id="resetBtn" type="button" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20">Reset</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="mt-16 mb-20">
-      <h2 class="text-xl font-semibold mb-3">FAQ</h2>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-          <h3 class="font-semibold">Is this free to host?</h3>
-          <p class="text-slate-300 text-sm mt-1">Yes. Host the static site on GitHub Pages or Netlify for free. Data is stored in your own free Firebase (Spark) project.</p>
-        </div>
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-          <h3 class="font-semibold">How do payments work?</h3>
-          <p class="text-slate-300 text-sm mt-1">This site does not process payments. Sellers can add a payment link or arrange trades via Discord. Use caution and escrow.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="border-t border-white/10 py-8 text-center text-slate-400 text-sm">
-    <p>© <span id="year"></span> Skyblock Exotics Market — community‑run marketplace.</p>
-  </footer>
-
-  <!-- Firebase SDK (modular) -->
-  <script type="module" src="firebase.js"></script>
-  <!-- App logic -->
-  <script type="module" src="app.js"></script>
+<footer class="border-t border-white/10 py-8 text-center text-slate-400 text-sm">
+  <p>© <span id="year"></span> Skyblock Exotics Market</p>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
