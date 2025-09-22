@@ -1,14 +1,11 @@
-// Firebase initialization (modular SDK). Fill in your config from Firebase console.
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { 
-  getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut 
-} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-import { 
-  getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, 
-  where, getDocs, doc, deleteDoc 
-} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } 
+  from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, 
+  where, getDocs, doc, deleteDoc } 
+  from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
-// Your web app's Firebase configuration
+// Your Firebase config (copy directly from Project Settings → Web app config)
 const firebaseConfig = {
   apiKey: "AIzaSyAa9ueAXgwOICP5VFejAwm1boAk1z9Dnuk",
   authDomain: "skyblock-exotics.firebaseapp.com",
@@ -19,13 +16,13 @@ const firebaseConfig = {
   measurementId: "G-L73QB5MPWC" // optional
 };
 
-// Initialize Firebase
+// Init
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
-// Re-export helpers used in app.js
+// Exports for app.js
 export {
   signInWithPopup, onAuthStateChanged, signOut,
   collection, addDoc, query, orderBy, onSnapshot, serverTimestamp,
