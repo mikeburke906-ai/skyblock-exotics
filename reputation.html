@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reputation • Skyblock Exotics</title>
+  <link rel="icon" href="favicon.ico">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100">
-  
 <header class="sticky top-0 z-40 border-b border-white/10 bg-slate-900/70 backdrop-blur">
   <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
     <div class="flex items-center gap-2">
@@ -16,9 +16,13 @@
       <a href="./" class="font-semibold tracking-wide">Skyblock Exotics</a>
     </div>
     <nav class="hidden md:flex items-center gap-6 text-slate-300">
-      <a href="./#market" class="hover:text-white ">Market</a>
-      <a href="./games.html" class="hover:text-white ">Games</a>
-      <a href="./reputation.html" class="hover:text-white text-white">Reputation</a>
+      <a href="./#market" class="hover:text-white">Market</a>
+      <a href="./games.html" class="hover:text-white">Coinflip</a>
+      <a href="./plinko.html" class="hover:text-white">Plinko</a>
+      <a href="./reputation.html" class="hover:text-white">Reputation</a>
+      <a href="./wallet.html" class="hover:text-white">Wallet</a>
+      <a href="./dms.html" class="hover:text-white">Messages</a>
+      <a href="./admin.html" class="hover:text-white">Admin</a>
       <a href="./#faq" class="hover:text-white">FAQ</a>
     </nav>
     <div id="authArea" class="flex items-center gap-2">
@@ -32,60 +36,60 @@
   </div>
 </header>
 
-  <main class="mx-auto max-w-7xl px-4 py-10 space-y-10">
-    <section>
-      <h1 class="text-3xl md:text-4xl font-extrabold">Reputation & Safety</h1>
-      <p class="text-slate-300 mt-2">Community tools to help you trade safer: player reports, reviews, and confirmed payout proofs.</p>
-    </section>
-    <section class="grid md:grid-cols-2 gap-6">
-      <!-- Reports -->
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-5 space-y-3">
-        <h2 class="text-lg font-semibold">Submit a Player Report</h2>
-        <form id="reportForm" class="grid gap-2">
-          <input name="reported" required placeholder="Reported player (Discord or IGN)" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
-          <input name="evidenceUrl" type="url" placeholder="Evidence URL (screenshots, video, sheet)" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
-          <textarea name="reason" rows="3" required placeholder="Reason / details" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10"></textarea>
-          <div class="flex justify-end"><button class="px-4 py-2 rounded-xl bg-rose-500/90 hover:bg-rose-500">Submit</button></div>
-        </form>
-        <div id="reportsList" class="grid gap-3"></div>
-      </div>
-      <!-- Reviews -->
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-5 space-y-3">
-        <h2 class="text-lg font-semibold">Leave a Review</h2>
-        <form id="reviewForm" class="grid gap-2">
-          <input name="target" required placeholder="Who are you reviewing? (Discord or IGN)" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
-          <select name="rating" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
-            <option value="5">5 - Great</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1 - Bad</option>
-          </select>
-          <textarea name="text" rows="3" required placeholder="Describe your trade experience" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10"></textarea>
-          <div class="flex justify-end"><button class="px-4 py-2 rounded-xl bg-emerald-500/90 hover:bg-emerald-500">Submit</button></div>
-        </form>
-        <div id="reviewsList" class="grid gap-3"></div>
-      </div>
-      <!-- Payouts -->
-      <div class="md:col-span-2 rounded-2xl border border-white/10 bg-white/5 p-5 space-y-3">
-        <h2 class="text-lg font-semibold">Post a Confirmed Payout</h2>
-        <form id="payoutForm" class="grid md:grid-cols-4 gap-2">
-          <input name="from" required placeholder="From (Discord/IGN)" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10 md:col-span-1">
-          <input name="to" required placeholder="To (Discord/IGN)" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10 md:col-span-1">
-          <select name="type" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10 md:col-span-1">
-            <option value="coins">Coins</option><option value="usd">USD</option>
-          </select>
-          <input name="amount" type="number" min="1" step="1" placeholder="Amount" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10 md:col-span-1">
-          <input name="proofUrl" type="url" placeholder="Proof URL (screenshot/video/tx)" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10 md:col-span-4">
-          <div class="md:col-span-4 flex justify-end"><button class="px-4 py-2 rounded-xl bg-indigo-500 hover:bg-indigo-600">Post</button></div>
-        </form>
-        <div id="payoutsList" class="grid md:grid-cols-2 gap-3"></div>
-      </div>
-    </section>
-  </main>
-  
+<main class="mx-auto max-w-7xl px-4 py-10 space-y-10">
+  <section>
+    <h1 class="text-3xl md:text-4xl font-extrabold">Reputation & Safety</h1>
+    <p class="text-slate-300 mt-2">Community tools to help you trade safer: player reports, reviews, and confirmed payout proofs.</p>
+  </section>
+  <section class="grid md:grid-cols-2 gap-6">
+    <div class="rounded-2xl border border-white/10 bg-white/5 p-5 space-y-3">
+      <h2 class="text-lg font-semibold">Submit a Player Report</h2>
+      <form id="reportForm" class="grid gap-2">
+        <input name="reported" required placeholder="Reported player (Discord or IGN)" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
+        <input name="evidenceUrl" type="url" placeholder="Evidence URL" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
+        <textarea name="reason" rows="3" required placeholder="Reason / details" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10"></textarea>
+        <div class="flex justify-end"><button class="px-4 py-2 rounded-xl bg-rose-500/90 hover:bg-rose-500">Submit</button></div>
+      </form>
+      <div id="reportsList" class="grid gap-3"></div>
+    </div>
+    <div class="rounded-2xl border border-white/10 bg-white/5 p-5 space-y-3">
+      <h2 class="text-lg font-semibold">Leave a Review</h2>
+      <form id="reviewForm" class="grid gap-2">
+        <input name="target" required placeholder="Who are you reviewing? (Discord or IGN)" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
+        <select name="rating" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10">
+          <option value="5">5 - Great</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1 - Bad</option>
+        </select>
+        <textarea name="text" rows="3" required placeholder="Describe your trade experience" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10"></textarea>
+        <div class="flex justify-end"><button class="px-4 py-2 rounded-xl bg-emerald-500/90 hover:bg-emerald-500">Submit</button></div>
+      </form>
+      <div id="reviewsList" class="grid gap-3"></div>
+    </div>
+    <div class="md:col-span-2 rounded-2xl border border-white/10 bg-white/5 p-5 space-y-3">
+      <h2 class="text-lg font-semibold">Post a Confirmed Payout</h2>
+      <form id="payoutForm" class="grid md:grid-cols-4 gap-2">
+        <input name="from" required placeholder="From (Discord/IGN)" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10 md:col-span-1">
+        <input name="to" required placeholder="To (Discord/IGN)" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10 md:col-span-1">
+        <select name="type" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10 md:col-span-1">
+          <option value="coins">Coins</option><option value="usd">USD</option>
+        </select>
+        <input name="amount" type="number" min="1" step="1" placeholder="Amount" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10 md:col-span-1">
+        <input name="proofUrl" type="url" placeholder="Proof URL" class="px-3 py-2 rounded-xl bg-white/10 border border-white/10 md:col-span-4">
+        <div class="md:col-span-4 flex justify-end"><button class="px-4 py-2 rounded-xl bg-indigo-500 hover:bg-indigo-600">Post</button></div>
+      </form>
+      <div id="payoutsList" class="grid md:grid-cols-2 gap-3"></div>
+    </div>
+  </section>
+</main>
+<script type="module" src="firebase.js"></script>
+<script type="module" src="reputation.js"></script>
+
 <footer class="border-t border-white/10 py-8 text-center text-slate-400 text-sm">
   <p>© <span id="year"></span> Skyblock Exotics Market — community-run marketplace.</p>
 </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-
-  <script type="module" src="firebase.js"></script>
-  <script type="module" src="reputation.js"></script>
+<script type="module">
+  import { uiAuthBindings } from './firebase.js';
+  uiAuthBindings();
+</script>
 </body>
 </html>
