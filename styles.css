@@ -1,9 +1,10 @@
-/* Optional small tweaks beyond Tailwind */
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.glass { backdrop-filter: blur(12px); background: rgba(255,255,255,0.06); }
-.badge { @apply inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full border border-white/10 bg-white/5; }
+
+/* Small helpers */
+.glass { backdrop-filter: blur(10px); background: rgba(17, 24, 39, 0.6); }
+.card { border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04); }
+.card-hover:hover { transform: translateY(-2px); transition: transform .15s ease; }
+.shadow-soft { box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+.container { max-width: 112rem; }
+.nav-link { @apply text-slate-300 hover:text-white; }
+.badge { @apply inline-block px-2 py-0.5 text-xs rounded-full border border-white/10 bg-white/5; }
+kbd { @apply px-1 py-0.5 text-xs rounded bg-white/10 border border-white/10; }
