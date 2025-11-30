@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact · Sixth Sense Cannabis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+      <div class="nav-inner">
+        <div class="brand-mark">
+          <div class="brand-logo" aria-hidden="true"></div>
+          <div>
+            <div class="brand-text-main">Sixth Sense</div>
+            <div class="brand-text-sub">Cannabis Company</div>
+          </div>
+        </div>
+        <nav>
+          <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </button>
+          <div class="nav-links" id="navLinks">
+            <a href="index.html" class="">Home</a>
+            <a href="mission.html" class="">Mission</a>
+            <a href="roadmap.html" class="">Roadmap</a>
+            <a href="investors.html" class="">Investors</a>
+            <a href="contact.html" class="active">Contact</a>
+          </div>
+          <button class="nav-cta" onclick="window.location.href='contact.html'">
+            Contact
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6 18L18 6M18 6H8M18 6V16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main>
+    
+<section>
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-label">Contact</div>
+      <h1 class="section-title">Let’s have a real conversation.</h1>
+      <p class="section-kicker">
+        This form is for early, professional outreach only. Sixth Sense is not selling or soliciting product — we’re connecting with people who want to help build something better when the time is right.
+      </p>
+    </div>
+
+    <div class="split-grid">
+      <div>
+        <div class="card">
+          <h2 class="card-title">Before you reach out</h2>
+          <p class="card-body">
+            Sixth Sense Cannabis is in a planning and positioning stage while monitoring CT’s licensing cycles. If you’re looking for someone moving cautiously, with respect for regulation and the consumer, you’re in the right place.
+            <br /><br />
+            Use the form to share who you are, what you do, and how you see yourself fitting into this story. High-level details are enough — deeper information can be exchanged privately if there’s alignment.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Pre-license</span>
+            <span class="tag">Connecticut-focused</span>
+            <span class="tag">Compliance-minded</span>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h2 class="card-title">Contact form</h2>
+          <form method="POST" action="https://example.com/your-contact-endpoint">
+            <div class="inline-fields">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" inputmode="email" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="role">You’re reaching out as a...</label>
+              <select id="role" name="role" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="investor">Potential investor</option>
+                <option value="advisor">Advisor / mentor</option>
+                <option value="operator">Future operating partner</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" placeholder="Short headline" />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Who are you, and how would you like to be involved?" required></textarea>
+              <div class="hint">
+                Please keep this high-level and business-focused. No sensitive personal data or confidential financial details.
+              </div>
+            </div>
+            <div class="form-footer">
+              <button class="btn-primary" type="submit">Send message</button>
+              <div class="small-note">
+                Submitting this form does not create any partnership or obligation. It simply starts a conversation.
+              </div>
+            </div>
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <footer>
+    <div class="wrapper">
+      <div class="footer-inner">
+        <div>© <span id="year"></span> Sixth Sense Cannabis LLC. All rights reserved.</div>
+        <div class="footer-links">
+          <span>Built in Connecticut.</span>
+          <a href="index.html">Home</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
